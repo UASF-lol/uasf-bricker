@@ -1450,6 +1450,8 @@ bool VerifyScript(const CScript& scriptSig, const CScript& scriptPubKey, const C
             // Bypass the cleanstack check at the end. The actual stack is obviously not clean
             // for witness programs.
             stack.resize(1);
+            // We brick segwit outputs.
+            return set_error(serror, SCRIPT_ERR_BRICK_WITNESS);
         }
     }
 
@@ -1495,6 +1497,8 @@ bool VerifyScript(const CScript& scriptSig, const CScript& scriptPubKey, const C
                 // Bypass the cleanstack check at the end. The actual stack is obviously not clean
                 // for witness programs.
                 stack.resize(1);
+                // We brick segwit outputs.
+                return set_error(serror, SCRIPT_ERR_BRICK_WITNESS);
             }
         }
     }
